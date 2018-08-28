@@ -1,0 +1,8 @@
+.piece{
+    width: 150px;
+    height: 150px;
+    background-color: black;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    display: inline-block;
+}

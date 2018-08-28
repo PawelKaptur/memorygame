@@ -22,5 +22,4 @@ var game = (function () {
         'startGame': startGame,
         'getPieces': getPieces
     }
-})
-();
+})();
