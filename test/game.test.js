@@ -12,7 +12,7 @@ describe('Game', function () {
         game.startGame();
 
         piecesToGuess = findPiecesToGuess(game.getPieces());
-        expect(piecesToGuess.length).toBe(2);
+        expect(piecesToGuess.length).toBe(1);
     });
 
     it('should start game with configured number of pieces', function () {

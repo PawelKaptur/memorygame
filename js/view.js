@@ -1,6 +1,20 @@
 var view = function () {
+    var numberOfPieces = 4;
+
     var getInitialNumberOfPieces = function () {
-        return document.getElementById('numberOfPieces').value;
+        return numberOfPieces;
+    };
+
+    var addPiece  = function () {
+        return numberOfPieces++;
+    };
+
+    var showNumberOfPieces = function () {
+        document.getElementById('numberOfPieces').textContent = numberOfPieces.toString();
+    };
+
+    var showNumberOfPiecesToGuess = function (number) {
+        document.getElementById('numberToGuess').textContent = number.toString();
     };
 
     var getTimeOfHighlight = function () {
@@ -47,12 +61,15 @@ var view = function () {
                 }
             }
         }, 1000 * getTimeOfHighlight());
-    }
+    };
 
     return {
         'getInitialNumberOfPieces': getInitialNumberOfPieces,
         'renderPieces': renderPieces,
         'resetPieces': resetPieces,
         'highlightPieces': highlightPieces,
+        'addPiece': addPiece,
+        'showNumberOfPieces': showNumberOfPieces,
+        'showNumberOfPiecesToGuess': showNumberOfPiecesToGuess
     }
 }();
