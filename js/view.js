@@ -3,6 +3,10 @@ var view = function () {
         return document.getElementById('numberOfPieces').value;
     };
 
+    var getTimeOfHighlight = function () {
+        return document.getElementById('highlightTime').value;
+    };
+
     var viewPieces;
 
     var renderPieces = function (pieces) {
@@ -27,16 +31,28 @@ var view = function () {
         var i;
         for (i = 0; i < pieces.length; i++) {
             if (pieces[i].toGuess === true) {
-
-                viewPieces[i].classList.add('highlight');
+                viewPieces[i].style.backgroundColor = "blue";
             }
         }
+
+        blackoutPieces(pieces);
     };
+
+    var blackoutPieces = function (pieces) {
+        setTimeout(function () {
+            var i;
+            for (i = 0; i < pieces.length; i++) {
+                if (pieces[i].toGuess === true) {
+                    viewPieces[i].style.backgroundColor = "black";
+                }
+            }
+        }, 1000 * getTimeOfHighlight());
+    }
 
     return {
         'getInitialNumberOfPieces': getInitialNumberOfPieces,
         'renderPieces': renderPieces,
         'resetPieces': resetPieces,
-        'highlightPieces': highlightPieces
+        'highlightPieces': highlightPieces,
     }
 }();
