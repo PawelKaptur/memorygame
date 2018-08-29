@@ -7,14 +7,13 @@
 </head>
 <body>
 <h1>JSTK</h1>
-<input id="numberOfPieces" type="number" value="4" placeholder="number of pieces" />
+<input id="numberOfPieces" type="number" value="4" placeholder="number of pieces" min="4" />
 <button onclick="controller.startGame()">Start Game</button>
+<button onclick="controller.highlight()">Highlight</button>
 <div id="pieces"></div>
 <script src="js/game.js"></script>
 <script src="js/view.js"></script>
 <script src="js/controller.js"></script>
-<script>
 
-</script>
 </body>
 </html>

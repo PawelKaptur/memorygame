@@ -16,6 +16,9 @@ var game = (function () {
                 pieces.push({});
             }
             pieces[1].toGuess = true;
+            pieces[3].toGuess = true;
+
+            //napisac funkcje losujaca ktory piece ma byc zgadywany
             return pieces;
         };
     return {
