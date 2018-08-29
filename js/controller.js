@@ -6,6 +6,7 @@ var controller = function () {
             numberOfPieces: initialNumberOfPieces
         });
 
+        view.resetPieces();
         view.renderPieces(game.getPieces());
     };
     return{

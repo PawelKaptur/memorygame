@@ -12,8 +12,16 @@ var view = function () {
         }
     };
 
+    var resetPieces = function () {
+        var pieces = document.getElementsByClassName('piece');
+        while (pieces.length > 0){
+            pieces[0].parentNode.removeChild(pieces[0]);
+        }
+    };
+
     return {
         'getInitialNumberOfPieces': getInitialNumberOfPieces,
-        'renderPieces': renderPieces
+        'renderPieces': renderPieces,
+        'resetPieces': resetPieces
     }
 }();
