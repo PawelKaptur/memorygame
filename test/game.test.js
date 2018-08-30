@@ -26,6 +26,18 @@ describe('Game', function () {
         expect(pieces.length).toBe(6);
     });
 
+    it('should start get current number of pieces', function () {
+        var pieces,
+            config = {
+                numberOfPieces: 44
+            };
+        game.startGame(config);
+
+        game.getPieces();
+        pieces = game.getCurrentPieces();
+        expect(pieces.length).toBe(44);
+    });
+
     function findPiecesToGuess(pieces) {
         return pieces.filter(function (piece) {
             return piece.toGuess;
