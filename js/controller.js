@@ -10,10 +10,16 @@ var controller = function () {
         view.showNumberOfPieces();
         view.renderPieces(game.getPieces());
         view.showNumberOfPiecesToGuess(game.calculatePiecesToGet(game.getPieces().length));
+        highlight();
     };
     
     var highlight = function () {
-        view.highlightPieces(game.getPieces());
+        //view.highlightPieces(game.getPieces());
+        view.highlightPieces(game.randomizePieces())
+    };
+    
+    var clickOnPiece = function (index) {
+       // view.clickOnPiece(index);
     };
 
     var addPiece = function () {
@@ -24,7 +30,7 @@ var controller = function () {
     return {
         'startGame': startGame,
         'highlight': highlight,
-        'addPiece': addPiece
+        'addPiece': addPiece,
+        'clickOnPiece': clickOnPiece
     }
-
 }();

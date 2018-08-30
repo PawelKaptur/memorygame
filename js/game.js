@@ -10,6 +10,18 @@ var game = (function () {
             }
         },
 
+        currentPieces = [],
+
+/*        addPieces = function(){
+            var i,
+                pieces = [];
+            for (i = 0; i < currentNumberOfPieces; i++) {
+                pieces.push({});
+            }
+
+            return pieces;
+        },*/
+
         getPieces = function () {
             var i,
                 pieces = [];
@@ -17,8 +29,28 @@ var game = (function () {
                 pieces.push({});
             }
 
-            piecesToGuess = calculatePiecesToGet(pieces.length);
+/*            piecesToGuess = calculatePiecesToGuess(pieces.length);
 
+            for(i = 0; i < piecesToGuess; i++){
+                var randomNumber = randomizePiecesToGuess(pieces.length);
+                while (pieces[randomNumber].toGuess === true){
+                    randomNumber = randomizePiecesToGuess(pieces.length);
+                }
+                pieces[randomNumber].toGuess = true;
+            }*/
+            currentPieces = pieces;
+            return pieces;
+        },
+
+        //losowanie klockow do zgadywaina to powinna byc osobna funkcja w ogole, ktora jest wywolwana w kontrolerze na starcie i po highlight
+        //pieces deklarowac wczesniej i w get pieces inicjaliowac
+        //moze wywolywac w randomizowaniu get piece, albo zrobic metode addPieces i getpieces osobno, getPieces zwracaloby juz powstale piecy
+
+
+        randomizePieces = function(){
+            var pieces = getPieces();
+            piecesToGuess = calculatePiecesToGuess(pieces.length);
+            var i;
             for(i = 0; i < piecesToGuess; i++){
                 var randomNumber = randomizePiecesToGuess(pieces.length);
                 while (pieces[randomNumber].toGuess === true){
@@ -30,7 +62,7 @@ var game = (function () {
             return pieces;
         },
 
-        calculatePiecesToGet = function(piecesToGuess){
+        calculatePiecesToGuess = function(piecesToGuess){
             return Math.floor(piecesToGuess / 2 - 1);
         },
 
@@ -41,6 +73,8 @@ var game = (function () {
     return {
         'startGame': startGame,
         'getPieces': getPieces,
-        'calculatePiecesToGet': calculatePiecesToGet
+        'calculatePiecesToGet': calculatePiecesToGuess,
+        'randomizePieces': randomizePieces
+  //      'addPieces': addPieces
     }
 })();

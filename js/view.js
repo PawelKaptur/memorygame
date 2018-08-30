@@ -21,16 +21,13 @@ var view = function () {
         return document.getElementById('highlightTime').value;
     };
 
-    var viewPieces;
-
     var renderPieces = function (pieces) {
         var i;
-        viewPieces = [];
         for (i = 0; i < pieces.length; i++) {
             var piece = document.createElement("div");
+            piece.setAttribute('id', i);
             piece.classList.add('piece');
             document.getElementById('pieces').appendChild(piece);
-            viewPieces.push(piece);
         }
     };
 
@@ -45,7 +42,8 @@ var view = function () {
         var i;
         for (i = 0; i < pieces.length; i++) {
             if (pieces[i].toGuess === true) {
-                viewPieces[i].style.backgroundColor = "blue";
+                document.getElementById(i).style.backgroundColor = "blue";
+                //document.getElementById(i).classList.add('highlight');
             }
         }
 
@@ -57,10 +55,25 @@ var view = function () {
             var i;
             for (i = 0; i < pieces.length; i++) {
                 if (pieces[i].toGuess === true) {
-                    viewPieces[i].style.backgroundColor = "black";
+                    document.getElementById(i).style.backgroundColor = "black";
                 }
             }
         }, 1000 * getTimeOfHighlight());
+
+        addEventListenersToPieces();
+    };
+
+    var addEventListenersToPieces = function () {
+        var children  = document.getElementById('pieces').children;
+        var i;
+        for (i = 0; i < children.length; i++){
+            children[i].addEventListener("click", clickOnPiece);
+        }
+    };
+
+    var clickOnPiece = function () {
+        //controller.clickOnPiece(index);
+        this.style.backgroundColor = 'red';
     };
 
     return {
@@ -70,6 +83,7 @@ var view = function () {
         'highlightPieces': highlightPieces,
         'addPiece': addPiece,
         'showNumberOfPieces': showNumberOfPieces,
-        'showNumberOfPiecesToGuess': showNumberOfPiecesToGuess
+        'showNumberOfPiecesToGuess': showNumberOfPiecesToGuess,
+        'clickOnPiece': clickOnPiece
     }
 }();
