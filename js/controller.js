@@ -9,17 +9,16 @@ var controller = function () {
 
         view.showNumberOfPieces();
         view.renderPieces(game.getPieces());
-        view.showNumberOfPiecesToGuess(game.calculatePiecesToGet(game.getPieces().length));
-        highlight();
+        view.showNumberOfPiecesToGuess(game.calculatePiecesToGet(game.getCurrentPieces().length));
+        view.highlightPieces(game.getCurrentPieces());
     };
     
     var highlight = function () {
-        //view.highlightPieces(game.getPieces());
-        view.highlightPieces(game.randomizePieces())
+        startGame();
     };
-    
-    var clickOnPiece = function (index) {
-       // view.clickOnPiece(index);
+
+    var clickOnPiece = function (i) {
+        view.clickOnPiece(i, game.checkClickedPiece(i));
     };
 
     var addPiece = function () {

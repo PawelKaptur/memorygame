@@ -5,7 +5,7 @@ var view = function () {
         return numberOfPieces;
     };
 
-    var addPiece  = function () {
+    var addPiece = function () {
         return numberOfPieces++;
     };
 
@@ -42,8 +42,7 @@ var view = function () {
         var i;
         for (i = 0; i < pieces.length; i++) {
             if (pieces[i].toGuess === true) {
-                document.getElementById(i).style.backgroundColor = "blue";
-                //document.getElementById(i).classList.add('highlight');
+                document.getElementById(i).classList.add('highlight');
             }
         }
 
@@ -55,7 +54,7 @@ var view = function () {
             var i;
             for (i = 0; i < pieces.length; i++) {
                 if (pieces[i].toGuess === true) {
-                    document.getElementById(i).style.backgroundColor = "black";
+                    document.getElementById(i).classList.remove('highlight');
                 }
             }
         }, 1000 * getTimeOfHighlight());
@@ -64,16 +63,27 @@ var view = function () {
     };
 
     var addEventListenersToPieces = function () {
-        var children  = document.getElementById('pieces').children;
+        var children = document.getElementById('pieces').children;
         var i;
-        for (i = 0; i < children.length; i++){
-            children[i].addEventListener("click", clickOnPiece);
+        for (i = 0; i < children.length; i++) {
+            document.getElementById(i).setAttribute("onclick", "controller.clickOnPiece(" + i + ")");
         }
     };
 
-    var clickOnPiece = function () {
+    var clickOnPiece = function (i, guess) {
         //controller.clickOnPiece(index);
-        this.style.backgroundColor = 'red';
+        /*        if(isTrue){
+                    this.classList.add('clicked');
+                }*/
+        if(guess){
+            document.getElementById(i).classList.add('goodPiece');
+        }
+        else{
+            document.getElementById(i).classList.add('wrongPiece');
+        }
+
+
+        //document.getElementById(id).classList.add('clicked');
     };
 
     return {

@@ -11,6 +11,10 @@
     background-color: blue;
 }
 
-.clicked {
+.wrongPiece {
     background-color: red;
+}
+
+.goodPiece {
+    background-color: green;
 }
