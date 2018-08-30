@@ -3,10 +3,6 @@ var view = function () {
         return parseInt(document.getElementById('numberOfPieces').innerText);
     };
 
-    var addPiece = function () {
-        return parseInt(document.getElementById('numberOfPieces').innerText) + 1;
-    };
-
     var showNumberOfPieces = function (numberOfPieces) {
         document.getElementById('numberOfPieces').textContent = numberOfPieces.toString();
     };
@@ -86,7 +82,6 @@ var view = function () {
         'renderPieces': renderPieces,
         'resetPieces': resetPieces,
         'highlightPieces': highlightPieces,
-        'addPiece': addPiece,
         'showNumberOfPieces': showNumberOfPieces,
         'showNumberOfPiecesToGuess': showNumberOfPiecesToGuess,
         'clickOnPiece': clickOnPiece

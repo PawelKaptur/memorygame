@@ -66,9 +66,6 @@ var game = (function () {
         },
 
         checkGuessedPieces = function () {
-            if(guessedPieces === calculatePiecesToGuess(currentPieces.length)){
-                currentNumberOfPieces++;
-            }
             return guessedPieces === calculatePiecesToGuess(currentPieces.length);
         };
 
