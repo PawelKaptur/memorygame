@@ -12,18 +12,18 @@ var controller = function () {
         view.showNumberOfPieces(game.getCurrentNumberOfPieces());
         view.showNumberOfPiecesToGuess(game.calculatePiecesToGet(game.getCurrentNumberOfPieces()));
         view.highlightPieces(game.getCurrentPieces());
-    };
+    },
 
-    var clickOnPiece = function (i) {
+    clickOnPiece = function (i) {
         view.clickOnPiece(i, game.checkClickedPiece(i));
-        if(game.checkGuessedPieces()){
+        if (game.checkGuessedPieces()) {
             setTimeout(function () {
                 addPiece();
             }, 1000);
-        };
-    };
+        }
+    },
 
-    var addPiece = function () {
+    addPiece = function () {
         view.showNumberOfPieces(game.getCurrentNumberOfPieces() + 1);
         startGame();
     };

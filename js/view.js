@@ -69,6 +69,7 @@ var view = function () {
             document.getElementById(i).classList.add('goodPiece');
         }
         else {
+            document.getElementById(i).classList.remove('goodPiece');
             document.getElementById(i).classList.add('wrongPiece');
             setTimeout(function () {
                 showNumberOfPieces(4);

@@ -54,14 +54,16 @@ var game = (function () {
         },
 
         checkClickedPiece = function (index) {
-            if(currentPieces[index].toGuess === true){
+            if (currentPieces[index].toGuess === true) {
                 guessedPieces++;
+                currentPieces[index].toGuess = false;
+                return true;
             }
 
-            return currentPieces[index].toGuess === true;
+            return false;
         },
 
-        getCurrentNumberOfPieces = function(){
+        getCurrentNumberOfPieces = function () {
             return currentNumberOfPieces;
         },
 
