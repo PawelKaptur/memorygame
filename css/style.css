@@ -1,4 +1,4 @@
-.piece{
+.piece {
     width: 150px;
     height: 150px;
     background-color: black;
@@ -17,4 +17,8 @@
 
 .goodPiece {
     background-color: green;
+}
+
+.disabled {
+    pointer-events: none;
 }
