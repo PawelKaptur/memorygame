@@ -1,15 +1,13 @@
 var view = function () {
-    var numberOfPieces = 4;
-
     var getInitialNumberOfPieces = function () {
-        return numberOfPieces;
+        return parseInt(document.getElementById('numberOfPieces').innerText);
     };
 
     var addPiece = function () {
-        return numberOfPieces++;
+        return parseInt(document.getElementById('numberOfPieces').innerText) + 1;
     };
 
-    var showNumberOfPieces = function () {
+    var showNumberOfPieces = function (numberOfPieces) {
         document.getElementById('numberOfPieces').textContent = numberOfPieces.toString();
     };
 
@@ -71,19 +69,16 @@ var view = function () {
     };
 
     var clickOnPiece = function (i, guess) {
-        //controller.clickOnPiece(index);
-        /*        if(isTrue){
-                    this.classList.add('clicked');
-                }*/
-        if(guess){
+        if (guess) {
             document.getElementById(i).classList.add('goodPiece');
         }
-        else{
+        else {
             document.getElementById(i).classList.add('wrongPiece');
+            setTimeout(function () {
+                showNumberOfPieces(4);
+                controller.startGame();
+            }, 1000);
         }
-
-
-        //document.getElementById(id).classList.add('clicked');
     };
 
     return {

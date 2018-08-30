@@ -2,12 +2,14 @@ var game = (function () {
     var initialNumberOfPieces = 4,
         currentNumberOfPieces,
         piecesToGuess = 1,
+        guessedPieces = 0,
         startGame = function (config) {
             if (config && config.numberOfPieces) {
                 currentNumberOfPieces = config.numberOfPieces;
             } else {
                 currentNumberOfPieces = initialNumberOfPieces;
             }
+            guessedPieces = 0;
         },
 
         currentPieces = [],
@@ -29,11 +31,6 @@ var game = (function () {
             return currentPieces;
         },
 
-        //losowanie klockow do zgadywaina to powinna byc osobna funkcja w ogole, ktora jest wywolwana w kontrolerze na starcie i po highlight
-        //pieces deklarowac wczesniej i w get pieces inicjaliowac
-        //moze wywolywac w randomizowaniu get piece, albo zrobic metode addPieces i getpieces osobno, getPieces zwracaloby juz powstale piecy
-
-
         randomizePieces = function (pieces) {
             piecesToGuess = calculatePiecesToGuess(pieces.length);
             var i;
@@ -48,16 +45,31 @@ var game = (function () {
             return pieces;
         },
 
-        calculatePiecesToGuess = function (piecesToGuess) {
-            return Math.floor(piecesToGuess / 2 - 1);
+        calculatePiecesToGuess = function (currentPieces) {
+            return Math.floor(currentPieces / 2 - 1);
         },
 
         randomizePiecesToGuess = function (length) {
             return Math.floor(Math.random() * length);
-        };
+        },
 
         checkClickedPiece = function (index) {
+            if(currentPieces[index].toGuess === true){
+                guessedPieces++;
+            }
+
             return currentPieces[index].toGuess === true;
+        },
+
+        getCurrentNumberOfPieces = function(){
+            return currentNumberOfPieces;
+        },
+
+        checkGuessedPieces = function () {
+            if(guessedPieces === calculatePiecesToGuess(currentPieces.length)){
+                currentNumberOfPieces++;
+            }
+            return guessedPieces === calculatePiecesToGuess(currentPieces.length);
         };
 
     return {
@@ -65,6 +77,8 @@ var game = (function () {
         'getPieces': getPieces,
         'calculatePiecesToGet': calculatePiecesToGuess,
         'getCurrentPieces': getCurrentPieces,
-        'checkClickedPiece': checkClickedPiece
+        'checkClickedPiece': checkClickedPiece,
+        'checkGuessedPieces': checkGuessedPieces,
+        'getCurrentNumberOfPieces': getCurrentNumberOfPieces
     }
 })();

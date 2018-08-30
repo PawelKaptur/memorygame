@@ -1,15 +1,17 @@
 var controller = function () {
     var startGame = function () {
         var initialNumberOfPieces = view.getInitialNumberOfPieces();
+
         view.resetPieces();
 
         game.startGame({
             numberOfPieces: initialNumberOfPieces
         });
 
-        view.showNumberOfPieces();
+
         view.renderPieces(game.getPieces());
-        view.showNumberOfPiecesToGuess(game.calculatePiecesToGet(game.getCurrentPieces().length));
+        view.showNumberOfPieces(game.getCurrentNumberOfPieces());
+        view.showNumberOfPiecesToGuess(game.calculatePiecesToGet(game.getCurrentNumberOfPieces()));
         view.highlightPieces(game.getCurrentPieces());
     };
     
@@ -19,11 +21,17 @@ var controller = function () {
 
     var clickOnPiece = function (i) {
         view.clickOnPiece(i, game.checkClickedPiece(i));
+        if(game.checkGuessedPieces()){
+            setTimeout(function () {
+                addPiece();
+            }, 1000);
+        };
     };
 
     var addPiece = function () {
         view.addPiece();
-        view.showNumberOfPieces();
+        view.showNumberOfPieces(game.getCurrentNumberOfPieces());
+        startGame();
     };
 
     return {
