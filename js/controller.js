@@ -2,10 +2,12 @@
 
 var controller = function () {
     var startGame = function () {
-            var initialNumberOfPieces = view.getInitialNumberOfPieces();
+            var initialNumberOfPieces = view.getInitialNumberOfPieces(),
+                allowedNumberOfMistakes = view.getNumberOfMistakes();
 
             game.startGame({
-                numberOfPieces: initialNumberOfPieces
+                numberOfPieces: initialNumberOfPieces,
+                numberOfMistakes: allowedNumberOfMistakes
             });
 
             view.renderPieces(game.getPieces());
@@ -25,22 +27,35 @@ var controller = function () {
             }
 
             if(!clickedPiece){
-                view.blockAllElements();
-                setTimeout(function () {
-                    view.showNumberOfPieces(4);
-                    startGame();
-                }, 1000)
+                view.setNumberOfMistakes(game.getNumberOfMistakes());
+                if(!game.checkIfGameCanBeContinued()){
+                    view.blockAllElements();
+                    setTimeout(function () {
+                        view.showNumberOfPieces(4);
+                        game.resetNumberOfMistakes();
+                        view.setNumberOfMistakes(game.getNumberOfMistakes());
+                        startGame();
+                    }, 1000)
+                }
             }
+
+            view.setAccuracy(game.getAccuracy());
         },
 
         addPiece = function () {
             view.showNumberOfPieces(game.getCurrentNumberOfPieces() + 1);
+            startGame();
+        },
+
+        startNewGame = function () {
+            view.showNumberOfPieces(4);
             startGame();
         };
 
     return {
         'startGame': startGame,
         'addPiece': addPiece,
-        'clickOnPiece': clickOnPiece
+        'clickOnPiece': clickOnPiece,
+        'startNewGame': startNewGame
     }
 }();

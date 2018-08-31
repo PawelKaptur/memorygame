@@ -98,6 +98,7 @@ describe('Game', function () {
     it('should mock methods and test controller startGame method', function () {
         var object = [{},{},{},{}];
         spyOn(view, 'getInitialNumberOfPieces').and.returnValue(4);
+        spyOn(view, 'getNumberOfMistakes').and.returnValue(0);
         spyOn(game, 'startGame');
         spyOn(game, 'getPieces').and.returnValue(object);
         spyOn(view, 'renderPieces');
@@ -110,7 +111,7 @@ describe('Game', function () {
 
         controller.startGame();
 
-        expect(game.startGame).toHaveBeenCalledWith({numberOfPieces: 4});
+        expect(game.startGame).toHaveBeenCalledWith({numberOfPieces: 4, numberOfMistakes: 0});
         expect(view.renderPieces).toHaveBeenCalledWith(object);
         expect(view.showNumberOfPieces).toHaveBeenCalledWith(4);
         expect(view.showNumberOfPiecesToGuess).toHaveBeenCalledWith(1);

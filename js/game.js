@@ -5,7 +5,14 @@ var game = (function () {
         currentNumberOfPieces,
         piecesToGuess = 1,
         guessedPieces = 0,
+        numberOfMistakes = 0,
+        allowedNumberOfMistakes = 0,
+        numberOfShots = 0,
+        accuracy = 0,
         startGame = function (config) {
+            if (config && config.numberOfMistakes) {
+                allowedNumberOfMistakes = config.numberOfMistakes;
+            }
             if (config && config.numberOfPieces) {
                 currentNumberOfPieces = config.numberOfPieces;
             } else {
@@ -56,13 +63,31 @@ var game = (function () {
         },
 
         checkClickedPiece = function (index) {
+            numberOfShots++;
             if (currentPieces[index].toGuess === true) {
                 guessedPieces++;
                 currentPieces[index].toGuess = false;
                 return true;
             }
 
+            numberOfMistakes++;
             return false;
+        },
+
+        checkIfGameCanBeContinued = function () {
+            var canBeContinued = allowedNumberOfMistakes >= numberOfMistakes;
+            if (!canBeContinued) {
+                numberOfShots = 0;
+            }
+            return allowedNumberOfMistakes >= numberOfMistakes;
+        },
+
+        getAccuracy = function () {
+            accuracy = (numberOfShots-numberOfMistakes)/numberOfShots * 100;
+            if(numberOfShots === 0){
+                accuracy = 0;
+            }
+            return accuracy;
         },
 
         getCurrentNumberOfPieces = function () {
@@ -71,6 +96,14 @@ var game = (function () {
 
         checkIfAllPiecesGuessed = function () {
             return guessedPieces === calculatePiecesToGuess(currentNumberOfPieces);
+        },
+
+        resetNumberOfMistakes = function () {
+            numberOfMistakes = 0;
+        },
+
+        getNumberOfMistakes = function () {
+            return numberOfMistakes;
         };
 
     return {
@@ -80,6 +113,10 @@ var game = (function () {
         'getCurrentPieces': getCurrentPieces,
         'checkClickedPiece': checkClickedPiece,
         'checkIfAllPiecesGuessed': checkIfAllPiecesGuessed,
-        'getCurrentNumberOfPieces': getCurrentNumberOfPieces
+        'getCurrentNumberOfPieces': getCurrentNumberOfPieces,
+        'checkIfGameCanBeContinued': checkIfGameCanBeContinued,
+        'resetNumberOfMistakes': resetNumberOfMistakes,
+        'getNumberOfMistakes': getNumberOfMistakes,
+        'getAccuracy': getAccuracy
     }
 })();

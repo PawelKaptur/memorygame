@@ -10,9 +10,14 @@
 <div id="menu">
     <p>Number of pieces: <span id="numberOfPieces">4</span></p>
     <p>Number of pieces to guess: <span id="numberToGuess">1</span></p>
-    <input id="highlightTime" type="number" value="1" placeholder="time of highlight" min="1"/>
+    <p>Time of highlight: <input id="highlightTime" type="number" value="1" min="1"/></p>
+    <P>Number of allowed mistakes: <input id="numberOfMistakes" type="number" value="0" min="0"/></P>
+    <P>Number of mistakes: <span id="mistakes">0</span></P>
+    <P>Accuracy: <span id="accuracy">0</span>%</P>
+
+    <button onclick="controller.startNewGame()">Start Game</button>
     <button onclick="controller.addPiece()">Add piece</button>
-    <button onclick="controller.startGame()"> Highlight</button>
+    <button onclick="controller.startGame()">Highlight</button>
 </div>
 <div id="pieces"></div>
 <script src="js/game.js"></script>

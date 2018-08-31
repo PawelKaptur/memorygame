@@ -17,6 +17,18 @@ var view = function () {
             return document.getElementById('highlightTime').value;
         },
 
+        getNumberOfMistakes = function(){
+            return document.getElementById('numberOfMistakes').value;
+        },
+
+        setNumberOfMistakes = function(mistakes){
+            document.getElementById('mistakes').textContent = mistakes;
+        },
+
+        setAccuracy = function(accuracy){
+            document.getElementById('accuracy').textContent = accuracy;
+        },
+
         renderPieces = function (pieces) {
             resetPieces();
             var i;
@@ -96,6 +108,9 @@ var view = function () {
         'showNumberOfPieces': showNumberOfPieces,
         'showNumberOfPiecesToGuess': showNumberOfPiecesToGuess,
         'clickOnPiece': clickOnPiece,
-        'blockAllElements': blockAllElements
+        'blockAllElements': blockAllElements,
+        'getNumberOfMistakes': getNumberOfMistakes,
+        'setNumberOfMistakes': setNumberOfMistakes,
+        'setAccuracy': setAccuracy
     }
 }();
