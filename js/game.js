@@ -67,17 +67,17 @@ var game = (function () {
             return currentNumberOfPieces;
         },
 
-        checkGuessedPieces = function () {
-            return guessedPieces === calculatePiecesToGuess(currentPieces.length);
+        checkIfAllPiecesGuessed = function () {
+            return guessedPieces === calculatePiecesToGuess(currentNumberOfPieces);
         };
 
     return {
         'startGame': startGame,
         'getPieces': getPieces,
-        'calculatePiecesToGet': calculatePiecesToGuess,
+        'calculatePiecesToGuess': calculatePiecesToGuess,
         'getCurrentPieces': getCurrentPieces,
         'checkClickedPiece': checkClickedPiece,
-        'checkGuessedPieces': checkGuessedPieces,
+        'checkIfAllPiecesGuessed': checkIfAllPiecesGuessed,
         'getCurrentNumberOfPieces': getCurrentNumberOfPieces
     }
 })();

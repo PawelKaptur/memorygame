@@ -10,14 +10,14 @@ var controller = function () {
 
             view.renderPieces(game.getPieces());
             view.showNumberOfPieces(game.getCurrentNumberOfPieces());
-            view.showNumberOfPiecesToGuess(game.calculatePiecesToGet(game.getCurrentNumberOfPieces()));
+            view.showNumberOfPiecesToGuess(game.calculatePiecesToGuess(game.getCurrentNumberOfPieces()));
             view.highlightPieces(game.getCurrentPieces());
         },
 
         clickOnPiece = function (i) {
             var clickedPiece = game.checkClickedPiece(i);
             view.clickOnPiece(i, clickedPiece);
-            if (game.checkGuessedPieces()) {
+            if (game.checkIfAllPiecesGuessed()) {
                 setTimeout(function () {
                     addPiece();
                 }, 1000);
