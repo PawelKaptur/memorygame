@@ -95,6 +95,7 @@ var view = function () {
         'highlightPieces': highlightPieces,
         'showNumberOfPieces': showNumberOfPieces,
         'showNumberOfPiecesToGuess': showNumberOfPiecesToGuess,
-        'clickOnPiece': clickOnPiece
+        'clickOnPiece': clickOnPiece,
+        'blockAllElements': blockAllElements
     }
 }();

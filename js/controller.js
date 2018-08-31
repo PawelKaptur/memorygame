@@ -18,12 +18,14 @@ var controller = function () {
             var clickedPiece = game.checkClickedPiece(i);
             view.clickOnPiece(i, clickedPiece);
             if (game.checkIfAllPiecesGuessed()) {
+                view.blockAllElements();
                 setTimeout(function () {
                     addPiece();
                 }, 1000);
             }
 
             if(!clickedPiece){
+                view.blockAllElements();
                 setTimeout(function () {
                     view.showNumberOfPieces(4);
                     startGame();

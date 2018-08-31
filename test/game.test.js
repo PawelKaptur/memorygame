@@ -95,7 +95,7 @@ describe('Game', function () {
         expect(guessedPiece).toBe(false);
     });
 
-    it('trying mock', function () {
+    it('should mock methods and test controller startGame method', function () {
         var object = [{},{},{},{}];
         spyOn(view, 'getInitialNumberOfPieces').and.returnValue(4);
         spyOn(game, 'startGame');
