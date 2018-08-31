@@ -42,9 +42,13 @@ var view = function () {
                     document.getElementById(i).classList.add('highlight');
                 }
             }
+            blockAllElements();
+            blackoutPieces(pieces);
+        },
+
+        blockAllElements = function(){
             document.getElementById('pieces').classList.add('disabled');
             document.getElementById('menu').classList.add('disabled');
-            blackoutPieces(pieces);
         },
 
         blackoutPieces = function (pieces) {
@@ -55,12 +59,16 @@ var view = function () {
                         document.getElementById(i).classList.remove('highlight');
                     }
                 }
-                document.getElementById('pieces').classList.remove('disabled');
-                document.getElementById('menu').classList.remove('disabled');
+                unblockAllElements();
             }, 1000 * getTimeOfHighlight());
 
 
             setAttributeForElement();
+        },
+
+        unblockAllElements = function(){
+            document.getElementById('pieces').classList.remove('disabled');
+            document.getElementById('menu').classList.remove('disabled');
         },
 
         setAttributeForElement = function () {
@@ -84,7 +92,6 @@ var view = function () {
     return {
         'getInitialNumberOfPieces': getInitialNumberOfPieces,
         'renderPieces': renderPieces,
-        'resetPieces': resetPieces,
         'highlightPieces': highlightPieces,
         'showNumberOfPieces': showNumberOfPieces,
         'showNumberOfPiecesToGuess': showNumberOfPiecesToGuess,

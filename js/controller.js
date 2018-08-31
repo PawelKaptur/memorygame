@@ -8,8 +8,6 @@ var controller = function () {
                 numberOfPieces: initialNumberOfPieces
             });
 
-            //game.startGame(initialNumberOfPieces);
-
             view.renderPieces(game.getPieces());
             view.showNumberOfPieces(game.getCurrentNumberOfPieces());
             view.showNumberOfPiecesToGuess(game.calculatePiecesToGuess(game.getCurrentNumberOfPieces()));
