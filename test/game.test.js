@@ -20,17 +20,19 @@ describe('Game', function () {
             config = {
                 numberOfPieces: 6
             };
+
         game.startGame(config);
 
         pieces = game.getPieces();
         expect(pieces.length).toBe(6);
     });
 
-    it('should start get current number of pieces', function () {
+    it('should start game and get current number of pieces', function () {
         var pieces,
             config = {
-                numberOfPieces: 44
-            };
+               numberOfPieces: 44
+           };
+
         game.startGame(config);
 
         game.getPieces();
@@ -76,7 +78,44 @@ describe('Game', function () {
         expect(allPiecesGuessed).toBe(false);
     });
 
+    it('should return false, because piece is not to guess', function () {
+        var guessedPiece,
+            config = {
+                numberOfPieces: 12
+            };
+        game.startGame(config);
 
+
+        game.getPieces();
+        while (game.checkClickedPiece(1)){
+            game.getPieces();
+        }
+
+        guessedPiece = game.checkClickedPiece(1);
+        expect(guessedPiece).toBe(false);
+    });
+
+    it('trying mock', function () {
+        var object = [{},{},{},{}];
+        spyOn(view, 'getInitialNumberOfPieces').and.returnValue(4);
+        spyOn(game, 'startGame');
+        spyOn(game, 'getPieces').and.returnValue(object);
+        spyOn(view, 'renderPieces');
+        spyOn(game, 'getCurrentNumberOfPieces').and.returnValue(4);
+        spyOn(view, 'showNumberOfPieces');
+        spyOn(game, 'calculatePiecesToGuess').and.returnValue(1);
+        spyOn(view, 'showNumberOfPiecesToGuess');
+        spyOn(game, 'getCurrentPieces').and.returnValue(object);
+        spyOn(view, 'highlightPieces');
+
+        controller.startGame();
+
+        expect(game.startGame).toHaveBeenCalledWith({numberOfPieces: 4});
+        expect(view.renderPieces).toHaveBeenCalledWith(object);
+        expect(view.showNumberOfPieces).toHaveBeenCalledWith(4);
+        expect(view.showNumberOfPiecesToGuess).toHaveBeenCalledWith(1);
+        expect(view.highlightPieces).toHaveBeenCalledWith(object);
+    });
 
     function findPiecesToGuess(pieces) {
         return pieces.filter(function (piece) {

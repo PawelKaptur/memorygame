@@ -1,12 +1,14 @@
+"use strict";
+
 var controller = function () {
     var startGame = function () {
             var initialNumberOfPieces = view.getInitialNumberOfPieces();
 
-            view.resetPieces();
-
             game.startGame({
                 numberOfPieces: initialNumberOfPieces
             });
+
+            //game.startGame(initialNumberOfPieces);
 
             view.renderPieces(game.getPieces());
             view.showNumberOfPieces(game.getCurrentNumberOfPieces());

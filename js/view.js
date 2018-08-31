@@ -1,3 +1,5 @@
+"use strict";
+
 var view = function () {
     var getInitialNumberOfPieces = function () {
             return parseInt(document.getElementById('numberOfPieces').innerText);
@@ -16,6 +18,7 @@ var view = function () {
         },
 
         renderPieces = function (pieces) {
+            resetPieces();
             var i;
             for (i = 0; i < pieces.length; i++) {
                 var piece = document.createElement("div");
