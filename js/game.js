@@ -104,6 +104,10 @@ var game = (function () {
 
         getNumberOfMistakes = function () {
             return numberOfMistakes;
+        },
+        
+        resetNumberOfShots = function () {
+            numberOfShots = 0;
         };
 
     return {
@@ -117,6 +121,7 @@ var game = (function () {
         'checkIfGameCanBeContinued': checkIfGameCanBeContinued,
         'resetNumberOfMistakes': resetNumberOfMistakes,
         'getNumberOfMistakes': getNumberOfMistakes,
-        'getAccuracy': getAccuracy
+        'getAccuracy': getAccuracy,
+        'resetNumberOfShots': resetNumberOfShots
     }
 })();
