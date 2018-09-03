@@ -49,6 +49,9 @@ var controller = function () {
 
         startNewGame = function () {
             view.showNumberOfPieces(4);
+            game.resetNumberOfMistakes();
+            view.setNumberOfMistakes(0);
+            view.setAccuracy(0);
             startGame();
         };
 

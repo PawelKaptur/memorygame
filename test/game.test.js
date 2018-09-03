@@ -140,7 +140,7 @@ describe('Game', function () {
 
         mistakes = game.getNumberOfMistakes();
         while (game.checkIfGameCanBeContinued()){
-            game.checkClickedPiece(1);
+            game.checkClickedPiece(0);
             game.getPieces();
             mistakes = game.getNumberOfMistakes();
         }
