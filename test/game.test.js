@@ -148,6 +148,24 @@ describe('Game', function () {
         expect(mistakes).toBeGreaterThan(4);
     });
 
+    it('should accuracy be 0 because number of shots reset', function () {
+        var accuracy,
+            config = {
+                numberOfPieces: 12,
+                numberOfMistakes: 4
+            };
+        game.startGame(config);
+        
+        game.getPieces();
+        game.checkClickedPiece(0);
+        game.checkClickedPiece(1);
+        game.checkClickedPiece(2);
+        game.resetNumberOfShots();
+        accuracy = game.getAccuracy();
+
+        expect(accuracy).toBe(0);
+    });
+
     it('should mock methods and test controller startGame method', function () {
         var object = [{},{},{},{}];
         spyOn(view, 'getInitialNumberOfPieces').and.returnValue(4);
