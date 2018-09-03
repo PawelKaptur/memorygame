@@ -83,7 +83,7 @@ var game = (function () {
         },
 
         getAccuracy = function () {
-            accuracy = (numberOfShots-numberOfMistakes)/numberOfShots * 100;
+            accuracy = Math.round((numberOfShots-numberOfMistakes)/numberOfShots * 100) ;
             if(numberOfShots === 0){
                 accuracy = 0;
             }

@@ -95,6 +95,59 @@ describe('Game', function () {
         expect(guessedPiece).toBe(false);
     });
 
+    it('should reset mistakes and mistakes should be 0', function () {
+        var mistakes,
+            config = {
+                numberOfPieces: 12,
+                numberOfMistakes: 4
+            };
+        game.startGame(config);
+        game.resetNumberOfMistakes();
+        mistakes = game.getNumberOfMistakes();
+
+        expect(mistakes).toBe(0);
+    });
+
+    it('should mistakes be greater than 0, and accuracy should be lesser than 100', function () {
+        var mistakes,
+            accuracy,
+            config = {
+                numberOfPieces: 12,
+                numberOfMistakes: 4
+            };
+        game.startGame(config);
+
+        mistakes = game.getNumberOfMistakes();
+        while (mistakes <= 0){
+            game.checkClickedPiece(1);
+            game.getPieces();
+            mistakes = game.getNumberOfMistakes();
+        }
+
+        accuracy = game.getAccuracy();
+
+        expect(mistakes).toBeGreaterThan(0);
+        expect(accuracy).toBeLessThan(100);
+    });
+
+    it('should number of mistakes be greater than allowed number of mistakes', function () {
+        var mistakes,
+            config = {
+                numberOfPieces: 12,
+                numberOfMistakes: 4
+            };
+        game.startGame(config);
+
+        mistakes = game.getNumberOfMistakes();
+        while (game.checkIfGameCanBeContinued()){
+            game.checkClickedPiece(1);
+            game.getPieces();
+            mistakes = game.getNumberOfMistakes();
+        }
+
+        expect(mistakes).toBeGreaterThan(4);
+    });
+
     it('should mock methods and test controller startGame method', function () {
         var object = [{},{},{},{}];
         spyOn(view, 'getInitialNumberOfPieces').and.returnValue(4);
