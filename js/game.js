@@ -105,7 +105,7 @@ var game = (function () {
         getNumberOfMistakes = function () {
             return numberOfMistakes;
         },
-        
+
         resetNumberOfShots = function () {
             numberOfShots = 0;
         };
